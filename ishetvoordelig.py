@@ -1,6 +1,6 @@
 #!/bin/python3
 
-def koekjesberekenen(beginwaarde, hoeveelheid):
+def nieuwekostberekenen(beginwaarde, hoeveelheid):
     factorr = 1.15
     tussen = beginwaarde
     nieuwefactor = factorr

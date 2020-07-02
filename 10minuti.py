@@ -1,7 +1,7 @@
 #!/bin/python3
 
 import math
-from ishetvoordelig import hoeveelkosthet, koekjesberekenen
+from ishetvoordelig import hoeveelkosthet, nieuwekostberekenen
 from loopmetfunctie import wachtofni
 
 factorr = 1.15
@@ -64,8 +64,8 @@ for i in range(1, simulatieduur):
     print("ik heb", j, "in het oog.")
     # De target is nu gekozen, nu uitmaken of hij beter koop of wacht.
     for j in items:
-        tussen = koekjesberekenen(items[j]['beginwaarde: '],
-                                  currentitems[j]['aantal'])
+        tussen = nieuwekostberekenen(items[j]['beginwaarde: '],
+                                     currentitems[j]['aantal'])
         currentprijs.append(math.ceil(tussen))
     print(currentprijs)
     tekopen = wachtofni(koekjesnu, cpsnu, currentprijs, duurste, items)
