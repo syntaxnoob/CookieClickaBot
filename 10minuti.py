@@ -6,7 +6,7 @@ from loopmetfunctie import wachtofni
 
 factorr = 1.15
 menscps = 5
-simulatieduur = 60 * 10  # 1 minuut * aantal minuten
+simulatieduur = (600)  # Tijd in seconden
 cpsnu = 0
 koekjesnu = 0
 
@@ -125,6 +125,8 @@ for i in range(1, simulatieduur):
             # print("we hebben nog niet genoeg koekjes.")
             pass
         wekopenduur = 0
+
+# Output van het script
 print("na", simulatieduur/60, "minuten: ")
 for i in currentitems:
     print(" -", currentitems[i]["aantal"], items[i]['naam'], "\'s")
