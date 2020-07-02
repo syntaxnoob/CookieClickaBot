@@ -6,7 +6,7 @@ from loopmetfunctie import wachtofni
 
 factorr = 1.15
 menscps = 5
-simulatieduur = 3600  # Pas dit nog aan
+simulatieduur = 60 * 10  # 1 minuut * aantal minuten
 cpsnu = 0
 koekjesnu = 0
 
