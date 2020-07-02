@@ -28,7 +28,7 @@ def wachtofni(nukoekje, cpsintotaal, watkosthet, duurste, nu):
         # print("je bespaard", round(bijnaduurstetijd - duurstetijd), "sec.")
         tekopen = 2
     else:
-        # print("het maakt niet  uit, koop maar zodat je een investering maakt.")
+        # print het maakt niet  uit, koop maar zodat je een investering maakt.
         tekopen = 1
 
     return tekopen

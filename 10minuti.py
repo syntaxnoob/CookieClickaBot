@@ -87,7 +87,7 @@ for i in range(1, simulatieduur):
             if(koekjesnu > currentprijs[duurste-1]):
 
                 currentitems[duurste-1]['aantal'] += 1
-                print("net de Nduurste", items[duurste]['naam'],
+                print("net de Nduurste", items[duurste-1]['naam'],
                       "op", i, "seconden.")
                 print("aantal koekjes nu", koekjesnu, "cps nu", cpsnu, "\n")
             else:
