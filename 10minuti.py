@@ -9,7 +9,7 @@ menscps = 7
 simulatieduur = 86400  # Pas dit nog aan
 cpsnu = 0
 
-currentitems = {0: {'aantal': 0}, 1: {'aantal': 0}, 2: {'aantal': 0},
+currentitems = {0: {'aantal': 1}, 1: {'aantal': 0}, 2: {'aantal': 0},
                 3: {'aantal': 0}, 4: {'aantal': 0}, 5: {'aantal': 0},
                 6: {'aantal': 0}, 7: {'aantal': 0}, 8: {'aantal': 0},
                 9: {'aantal': 0}, 10: {'aantal': 0}}
