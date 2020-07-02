@@ -6,8 +6,9 @@ from loopmetfunctie import wachtofni
 
 factorr = 1.15
 menscps = 5
-simulatieduur = 600  # Pas dit nog aan
+simulatieduur = 3600  # Pas dit nog aan
 cpsnu = 0
+koekjesnu = 0
 
 currentitems = {0: {'aantal': 0}, 1: {'aantal': 0}, 2: {'aantal': 0},
                 3: {'aantal': 0}, 4: {'aantal': 0}, 5: {'aantal': 0},
@@ -27,22 +28,28 @@ items = {0: {'naam': "cursor", 'cps: ': 0.1, 'beginwaarde: ': 15},
          9: {'naam': "lab", 'cps: ': 1600000, 'beginwaarde: ': 75000000000},
          10: {'naam': "portal", 'cps: ': 10000000,
               'beginwaarde: ': 1000000000000}}
+
 for i in range(1, simulatieduur):
     currentprijs = []
     # Hoeveel koekjes op dit moment
     tussencps = 0
-    tussenkost = 0
+    albetaald = 0
     for j in currentitems:
         tussencps = tussencps + (currentitems[j]['aantal']*items[j]['cps: '])
-    cpsnu = tussencps + menscps
+    if 0.01*tussencps > menscps:
+        cpsnu = tussencps
+    else:
+        cpsnu = tussencps + menscps
     # print("koekjes per seconden NU", cpsnu)
     # Het CPS is gekend
     for k in currentitems:
-        tussenkost = tussenkost + math.ceil(hoeveelkosthet(
+        albetaald = albetaald + math.ceil(hoeveelkosthet(
             items[k]['beginwaarde: '],
             currentitems[k]['aantal']))
     # Het aantal koekjes op dit moment is gekend
-    koekjesnu = ((i * cpsnu)-tussenkost)
+
+    koekjesnu = round(koekjesnu + cpsnu)
+
     # print("aantal koekjes NU", koekjesnu)
 
     # Nu moet het programma uitmaken of dat het beter is om iets te kopen dan
@@ -61,7 +68,7 @@ for i in range(1, simulatieduur):
         else:
             j = j+1
             pass
-    # print("ik heb", j, "in het oog.")
+    # print("ik heb", duurste, "in het oog.")
     # De target is nu gekozen, nu uitmaken of hij beter koop of wacht.
     for j in items:
         tussen = nieuwekostberekenen(items[j]['beginwaarde: '],
@@ -77,8 +84,12 @@ for i in range(1, simulatieduur):
             if(koekjesnu > currentprijs[duurste]):
                 currentitems[duurste]['aantal'] += 1
                 print("net de net niet dure gekocht", items[duurste]['naam'],
-                      "op", i, "seconden.")
-                print("aantal koekjes nu", koekjesnu, "cps nu", cpsnu, "\n")
+                      "op", i, "seconden voor",
+                      currentprijs[duurste], "koekjes.")
+                print("ik had", items[duurste]['naam'], "op het oog")
+                print("aantal koekjes nu", koekjesnu, "cps nu", cpsnu)
+                print("ik heb nu", koekjesnu-currentprijs[duurste], ".\n")
+                koekjesnu = koekjesnu - currentprijs[duurste]
 
             else:
                 # print("niet genoeg geld")
@@ -88,8 +99,12 @@ for i in range(1, simulatieduur):
 
                 currentitems[duurste-1]['aantal'] += 1
                 print("net de Nduurste", items[duurste-1]['naam'],
-                      "op", i, "seconden.")
-                print("aantal koekjes nu", koekjesnu, "cps nu", cpsnu, "\n")
+                      "op", i, "seconden voor",
+                      currentprijs[duurste], "koekjes.")
+                print("ik had", items[duurste]['naam'], "op het oog")
+                print("aantal koekjes nu", koekjesnu, "cps nu", cpsnu)
+                print("ik heb nu", koekjesnu-currentprijs[duurste-1], ".\n")
+                koekjesnu = koekjesnu - currentprijs[duurste-1]
             else:
                 # print("niet genoeg geld")
                 pass
@@ -101,9 +116,13 @@ for i in range(1, simulatieduur):
         if(koekjesnu > currentprijs[duurste]):
             currentitems[duurste]['aantal'] += 1
             print("net de HEEL DURE gekocht", items[duurste]['naam'],
-                  "op", i, "seconden.")
-            print("aantal koekjes nu", koekjesnu, "cps nu", cpsnu, "\n")
+                  "op", i, "seconden voor", currentprijs[duurste], "koekjes.")
+            print("ik had", items[duurste]['naam'], "op het oog")
+            print("aantal koekjes nu", koekjesnu, "cps nu", cpsnu)
+            print("ik heb nu", koekjesnu-currentprijs[duurste], ".\n")
+            koekjesnu = koekjesnu - currentprijs[duurste]
         else:
             # print("we hebben nog niet genoeg koekjes.")
             pass
+        wekopenduur = 0
 print(currentitems)

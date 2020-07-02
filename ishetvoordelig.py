@@ -20,10 +20,14 @@ def hoeveelkosthet(beginwaarde, hoeveelheid):
     factorr = 1.15
     nieuwefactor = factorr
     totaleprijs = 0
-    for i in range(hoeveelheid):
-        if i == 0:
-            pass
-        else:
+    if hoeveelheid == 0:
+        totaleprijs = 0
+
+    elif hoeveelheid == 1:
+        totaleprijs = beginwaarde
+    else:
+        for i in range(hoeveelheid):
+
             for j in range(i):
                 nieuwefactor = nieuwefactor * factorr
         totaleprijs = totaleprijs + (beginwaarde*nieuwefactor)
