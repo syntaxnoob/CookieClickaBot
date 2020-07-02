@@ -1,7 +1,7 @@
 #!/bin/python3
 
 import math
-from ishetvoordelig import hoeveelkosthet, nieuwekostberekenen
+from functions import hoeveelkosthet, nieuwekostberekenen
 from loopmetfunctie import wachtofni
 
 factorr = 1.15
@@ -125,4 +125,6 @@ for i in range(1, simulatieduur):
             # print("we hebben nog niet genoeg koekjes.")
             pass
         wekopenduur = 0
-print(currentitems)
+print("na", simulatieduur/60, "minuten: ")
+for i in currentitems:
+    print(" -", currentitems[i]["aantal"], items[i]['naam'], "\'s")
