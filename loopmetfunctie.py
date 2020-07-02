@@ -21,14 +21,14 @@ def wachtofni(nukoekje, cpsintotaal, watkosthet, duurste, nu):
 
     # Kopen of wachten
     if(bijnaduurstetijd < duurstetijd):
-        print("Ik raad aan om item net niet duur te kopen.")
+        # print("Ik raad aan om item net niet duur te kopen.")
         tekopen = 1
     elif(bijnaduurstetijd > duurstetijd):
-        print("ik raad aan om te wachten tot je de volgende item kan kopen.")
-        print("je bespaard", round(bijnaduurstetijd - duurstetijd), "sec.")
+        # print("ik raad aan om te wachten tot je de volgende item kan kopen.")
+        # print("je bespaard", round(bijnaduurstetijd - duurstetijd), "sec.")
         tekopen = 2
     else:
-        print("het maakt niet  uit, koop maar zodat je een investering maakt.")
+        # print("het maakt niet  uit, koop maar zodat je een investering maakt.")
         tekopen = 1
 
     return tekopen

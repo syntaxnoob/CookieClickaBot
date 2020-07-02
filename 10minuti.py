@@ -5,11 +5,11 @@ from ishetvoordelig import hoeveelkosthet, nieuwekostberekenen
 from loopmetfunctie import wachtofni
 
 factorr = 1.15
-menscps = 7
-simulatieduur = 86400  # Pas dit nog aan
+menscps = 5
+simulatieduur = 600  # Pas dit nog aan
 cpsnu = 0
 
-currentitems = {0: {'aantal': 1}, 1: {'aantal': 0}, 2: {'aantal': 0},
+currentitems = {0: {'aantal': 0}, 1: {'aantal': 0}, 2: {'aantal': 0},
                 3: {'aantal': 0}, 4: {'aantal': 0}, 5: {'aantal': 0},
                 6: {'aantal': 0}, 7: {'aantal': 0}, 8: {'aantal': 0},
                 9: {'aantal': 0}, 10: {'aantal': 0}}
@@ -35,7 +35,7 @@ for i in range(1, simulatieduur):
     for j in currentitems:
         tussencps = tussencps + (currentitems[j]['aantal']*items[j]['cps: '])
     cpsnu = tussencps + menscps
-    print("koekjes per seconden NU", cpsnu)
+    # print("koekjes per seconden NU", cpsnu)
     # Het CPS is gekend
     for k in currentitems:
         tussenkost = tussenkost + math.ceil(hoeveelkosthet(
@@ -43,7 +43,7 @@ for i in range(1, simulatieduur):
             currentitems[k]['aantal']))
     # Het aantal koekjes op dit moment is gekend
     koekjesnu = ((i * cpsnu)-tussenkost)
-    print("aantal koekjes NU", koekjesnu)
+    # print("aantal koekjes NU", koekjesnu)
 
     # Nu moet het programma uitmaken of dat het beter is om iets te kopen dan
     # om te wachten, wat de beste keuze voor dit moment is.
@@ -61,42 +61,49 @@ for i in range(1, simulatieduur):
         else:
             j = j+1
             pass
-    print("ik heb", j, "in het oog.")
+    # print("ik heb", j, "in het oog.")
     # De target is nu gekozen, nu uitmaken of hij beter koop of wacht.
     for j in items:
         tussen = nieuwekostberekenen(items[j]['beginwaarde: '],
                                      currentitems[j]['aantal'])
         currentprijs.append(math.ceil(tussen))
-    print(currentprijs)
+
     tekopen = wachtofni(koekjesnu, cpsnu, currentprijs, duurste, items)
 
     # Koop het bijna duurste items
     if tekopen == 1:
-        print("we gaan het net niet duurste kopen, update in current items.")
+        # print("we gaan het net niet duurste kopen, update in current items.")
         if (duurste == 0):
             if(koekjesnu > currentprijs[duurste]):
                 currentitems[duurste]['aantal'] += 1
-                print("net de net niet dure gekocht")
+                print("net de net niet dure gekocht", items[duurste]['naam'],
+                      "op", i, "seconden.")
+                print("aantal koekjes nu", koekjesnu, "cps nu", cpsnu, "\n")
+
             else:
-                print("niet genoeg geld")
+                # print("niet genoeg geld")
                 pass
         else:
             if(koekjesnu > currentprijs[duurste-1]):
 
                 currentitems[duurste-1]['aantal'] += 1
-                print("net de net NIET dure gekocht")
+                print("net de Nduurste", items[duurste]['naam'],
+                      "op", i, "seconden.")
+                print("aantal koekjes nu", koekjesnu, "cps nu", cpsnu, "\n")
             else:
-                print("niet genoeg geld")
+                # print("niet genoeg geld")
                 pass
     # Koop het duurste items
     else:
-        print("we wachten op het duurste item")
+        # print("we wachten op het duurste item")
         wekopenduur = 88
     if (wekopenduur == 88):
         if(koekjesnu > currentprijs[duurste]):
             currentitems[duurste]['aantal'] += 1
-            print("net de HEEL DURE gekocht")
+            print("net de HEEL DURE gekocht", items[duurste]['naam'],
+                  "op", i, "seconden.")
+            print("aantal koekjes nu", koekjesnu, "cps nu", cpsnu, "\n")
         else:
-            print("we hebben nog niet genoeg koekjes.")
-    print("\n")
+            # print("we hebben nog niet genoeg koekjes.")
+            pass
 print(currentitems)
